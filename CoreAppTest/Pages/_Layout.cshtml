@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+ 
+</head>
+
+<body>
+    <style>
+        
+    .menu {
+  float: left;
+  width: 20%;
+}
+        .button {
+            background-color: #1c87c9;
+            border: none;
+            color: white;
+            padding: 8px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 20px;
+            margin-top: 7px;
+            cursor: pointer;
+        }
+        .btn-default{
+            background-color:aqua;
+            border:double;
+            color:cornsilk;
+            text-align:center;
+            font-size:30px;
+            margin-top:8px;
+            cursor:pointer;
+
+        }
+    </style>
+   
+    <div class="menu">
+        <div>  <a href="~/Anasayfa" class="btn-default">AnaSayfa</a></div>
+       
+        <div> <a href="~/XAppLogs" class=" button">xAppLogs</a></div>
+
+        <div> <a href="~/YAppLogs" class=" button">yAppLogs</a></div>
+
+        <div> <a href="~/ZAppLogs" class=" button">zAppLogs</a></div>
+
+    </div>  
+
+    @RenderBody()
+
+</body>
+</html>

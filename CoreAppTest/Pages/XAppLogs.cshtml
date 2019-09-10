@@ -1,0 +1,54 @@
+﻿
+@page
+@using System.IO;
+@using System.Xml;
+@using System.Diagnostics;
+@model CoreAppTest.Pages.XAppLogsModel
+@{
+    ViewData["Title"] = "XAppLogs";
+    Layout = "~/Pages/_Layout.cshtml";
+
+    string[] xmlFiles = Directory.GetFiles("C:\\Users\\recep.kaya.BIMSADOM\\Desktop\\scripts");
+    DirectoryInfo di = new DirectoryInfo("C:\\Users\\recep.kaya.BIMSADOM\\Desktop\\scripts");
+    FileInfo[] fi = di.GetFiles();
+    int logCount = xmlFiles.Length;
+
+    <h2>XAppLogs</h2>
+    
+    using (XmlWriter writer = XmlWriter.Create("LogX.xml"))
+    {
+        writer.WriteStartElement("logs");
+        foreach (var logs in fi)
+        {
+            writer.WriteElementString("DosyaAd", "" + logs.Name + "");
+            writer.WriteElementString("olusturmaTarihi", "" + logs.FullName + "");
+            <table>
+                <thead>
+                    <tr>
+                        <th>@logs.Name</th>
+                        <th>@logs.FullName</th>
+                    </tr>
+                </thead>
+            </table>
+
+        }
+        writer.WriteEndElement();
+        writer.Flush();
+
+        ////string folderPath = "C:\\Users\\recep.kaya.BIMSADOM\\Desktop\\scripts";
+        ////ProcessStartInfo startInfo = new ProcessStartInfo
+        ////{
+        ////    Arguments = folderPath,
+        ////    FileName = "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
+        ////};
+
+        ////Process.Start(startInfo);
+    }
+}
+
+
+
+
+
+
+

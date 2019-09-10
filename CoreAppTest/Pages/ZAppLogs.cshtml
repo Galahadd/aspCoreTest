@@ -1,0 +1,32 @@
+﻿@page
+@model CoreAppTest.Pages.ZAppLogsModel
+@{
+    ViewData["Title"] = "ZAppLogs";
+    Layout = "~/Pages/_Layout.cshtml";
+    @using System.IO;
+    @using System.Xml
+
+    DirectoryInfo di = new DirectoryInfo("C:\\Users\\recep.kaya.BIMSADOM\\Desktop\\scripts3");
+    FileInfo[] fi = di.GetFiles();
+
+    <h2>@Model.Message</h2>
+
+    using (XmlWriter writer = XmlWriter.Create("LogZ.xml"))
+    {
+        writer.WriteStartElement("logs");
+        foreach (var logs in fi)
+        {
+            writer.WriteElementString("DosyaAd", "" + logs.Name + "");
+            writer.WriteElementString("olusturmaTarihi", "" + logs.FullName + "");
+            <table>
+                <thead>
+                    <tr>
+                        <th>@logs.Name</th>
+                        <th>@logs.FullName</th>
+                    </tr>
+                </thead>
+            </table>
+        }
+    }
+}
+

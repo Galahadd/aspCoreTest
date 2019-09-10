@@ -1,0 +1,33 @@
+﻿@page
+@using System.IO;
+@using System.Xml
+@model YAppLogsModel
+@{
+    ViewData["Title"] = "YAppLogs";
+    Layout = "~/Pages/_Layout.cshtml";
+    DirectoryInfo di = new DirectoryInfo("C:\\Users\\recep.kaya.BIMSADOM\\Desktop\\scripts2");
+    FileInfo[] fi = di.GetFiles();
+
+    <h2>@Model.Message</h2> 
+
+    using (XmlWriter writer = XmlWriter.Create("LogY.xml"))
+    {
+        writer.WriteStartElement("logs");
+        foreach (var logs in fi)
+        {
+            writer.WriteElementString("DosyaAd", "" + logs.Name + "");
+            writer.WriteElementString("olusturmaTarihi", "" + logs.FullName + "");
+            <table>
+                <thead>
+                    <tr>
+                        <th>@logs.Name</th>
+                        <th>@logs.FullName</th>
+                    </tr>
+                </thead>
+            </table>
+        }
+    }
+}
+
+
+
